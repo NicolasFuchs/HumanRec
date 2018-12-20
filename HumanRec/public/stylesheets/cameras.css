@@ -1,0 +1,134 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+#controlsContainer {
+    background-color: dimgrey;
+    width: 10%;
+    height: 100%;
+    margin-right: -10%;
+}
+
+#mainContainer {
+    background-color: dimgrey;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#camerasContainer {
+    background-color: white;
+    overflow: hidden;
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#sidebarCollapse {
+    margin: 1%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#sidebar {
+    min-height: 100%;
+}
+
+#camerasRow {
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0;
+}
+
+.cameraCol {
+    height: 100%;
+    padding: 0.5%;
+    display: inline-block;
+    float: none;
+}
+
+.cameraBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.nameRow {
+    position: relative;
+    margin: 0;
+}
+
+.nameRow > input {
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.nameRow > i {
+    color: dimgrey;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.canvasRow {
+    height: 45%;
+    margin: 0;
+}
+
+.canvasRow > canvas {
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+}
+
+.buttonsRow {
+    margin: 0 !important;
+    width: 100%;
+}
+
+.buttonsRow > button {
+    width: 50%;
+    border-color: black;
+}
+
+.fa-plus {
+    color: green;
+}
+
+.fa-minus, .fa-ban, .fa-trash-o {
+    color: red;
+}
+
+.nav-tabs {
+    margin: 5px;
+}
+
+#cameraDeletionMode {
+    text-align: center;
+    color: red;
+}
+
+img {
+    width: auto;
+    height: 100%;
+}
+

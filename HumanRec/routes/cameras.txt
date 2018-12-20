@@ -1,0 +1,1 @@
+[{"isWebcam":"false","cameraName":"camHall","cameraNum":"","IPAddr":"http://169.254.235.6/mjpg/video.mjpg"},{"isWebcam":"true","cameraName":"webcam","cameraNum":"0","IPAddr":""}]

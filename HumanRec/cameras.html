@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1"/>
+        <meta charset="UTF-8"/>
+        <title>HumanRec - Cameras</title>
+        <link rel="stylesheet" type="text/css" href="public/stylesheets/cameras.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div id="mainContainer">
+            <!-- cameras -->
+            <div id="camerasContainer">
+                <div id="camerasRow" class="row"></div>
+                <button type="button" id="sidebarCollapse" class="btn btn-secondary">
+                    <i id="sidebarCollapseIcon" class="fa fa-2x fa-caret-square-o-left" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- sidebar -->
+        <div id="controlsContainer">
+            <nav id="sidebar">
+                <span id="addCamera" class="fa-stack fa-5x">
+                    <i class="fa fa-video-camera fa-stack-2x" aria-hidden="true"></i>
+                    <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
+                </span>
+                <span id="removeCamera" class="fa-stack fa-5x">
+                    <i class="fa fa-video-camera fa-stack-2x" aria-hidden="true"></i>
+                    <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
+                </span>
+            </nav>
+        </div>
+
+        <!-- add camera modal -->
+        <div class="modal fade" id="addCameraModal" tabindex="-1" role="dialog" aria-labelledby="Add a camera" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add a camera</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item active">
+                                <a class="nav-link" data-toggle="tab" href="#webcam">Webcam</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#ipcamera">IP Camera</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="webcam" class="tab-pane fade in active">
+                                <label for="cameraNum">Enter a positive camera number</label>
+                                <input id="cameraNum" type="number" value="0">
+                            </div>
+                            <div id="ipcamera" class="tab-pane fade">
+                                <label for="cameraIP">Enter a mjpeg link</label>
+                                <input id="cameraIP" type="text" value=""><!-- http://169.254.194.26/mjpg/video.mjpg -->
+                            </div>
+                        </div>
+                        <label for="cameraNameModal">Enter a name for the camera</label>
+                        <input id="cameraNameModal" type="text" value="camera">
+                    </div>
+                    <div class="modal-footer">
+                        <span id="addModalButton" class="fa-stack fa-5x">
+                            <i class="fa fa-video-camera fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                        <span id="cancelModalButton" class="fa-stack fa-5x">
+                            <i class="fa fa-video-camera fa-stack-2x" aria-hidden="true"></i>
+                            <i class="fa fa-ban fa-stack-1x" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Camera deletion mode modal -->
+        <div class="modal fade" id="cameraDeletionMode" tabindex="-1" role="dialog" aria-labelledby="Camera Deletion mode Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        You are in Camera Deletion Mode! Please select the camera(s) to delete!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invalid name modal -->
+        <div class="modal fade" id="invalidNameModal" tabindex="-1" role="dialog" aria-labelledby="Invalid Name Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Invalid Camera Name! Please choose a different one!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+        <script src="public/javascripts/cameraPattern.js"></script>
+        <script src="public/javascripts/cam.js"></script>
+        <script src="public/javascripts/cameras.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "name": "humanrec",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "ajax": "0.0.4",
+    "aws-sdk": "^2.263.1",
+    "circular-json": "^0.5.5",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "interface": "^1.2.1",
+    "jade": "~1.11.0",
+    "jimp": "^0.2.28",
+    "jquery": "^3.3.1",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery-ui-timepicker-addon": "^1.6.3",
+    "mjpeg-camera": "^1.7.2",
+    "morgan": "~1.9.0",
+    "node-onvif": "^0.1.4",
+    "node-upnp-client": "0.0.2",
+    "onvif": "^0.6.0",
+    "opencv": "git+https://github.com/peterbraden/node-opencv.git",
+    "opencv2": "^5.0.1",
+    "opencv4nodejs": "^4.6.1",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.1.1",
+    "streamedian": "git://github.com/Streamedian/html5_rtsp_player.git",
+    "threads": "^0.11.0",
+    "uuid": "^3.3.2"
+  }
+}

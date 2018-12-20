@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1"/>
+        <title>HumanRec - Individuals</title>
+        <link rel="stylesheet" type="text/css" href="public/stylesheets/individuals.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div id="mainContainer">
+            <div id="individualsContainer">
+                <div id="individualsTableRow" class="row">
+                    <div class="row" style="width: 100%; height: 10%; margin: 0; display: flex; align-items: center;">
+                        <h1 style="margin: 0;">Detected Individuals</h1>
+                        <button type="button" class="btn btn-light" id="mergeEnter" style=" position: absolute; right: 0;">Enter individuals merging mode</button>
+                        <div id="mergeControls" style="position: absolute; right: 0; display: none">
+                            <i class="fa fa-times fa-3x btn" id="mergeCancel" aria-hidden="true" style="background-color: white; color: red;"></i>
+                            <i class="fa fa-check fa-3x btn" id="mergeConfirm" aria-hidden="true" style="background-color: white; color: green;"></i>
+                        </div>
+                    </div>
+                    <div class="row" style="border: 2px solid black; background-color: white; width: 100%; height: 90%; margin: 0; overflow-x: hidden; overflow-y: auto;">
+                        <table id="individualsTable" class="table table-hover text-center" style="width: 100%; background-color: white; color: black; margin: 0;">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" style="width: 7%;">ID Picture</th>
+                                    <th scope="col" style="width: 15%;">ID Name</th>
+                                    <th scope="col" style="width: 3%;">Age</th>
+                                    <th scope="col" style="width: 30%;">Description</th>
+                                    <th scope="col" style="width: 30%;">Comment</th>
+                                    <th scope="col" style="width: 5%;">Known</th>
+                                    <th scope="col" style="width: 7%;">Tracking</th>
+                                    <th scope="col" style="width: 3%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div style="width: 100%; height: 100%; background-color: white; color: black; display: none;">No detected Individual</div>
+                    </div>
+                    <div class="row" style="width: 100%; height: 100%; margin: 0; padding: 0;">
+                        <div class="col-7" style="height: 100%; margin: 0; padding: 0;">
+                            <div class="row" style="width: 100%; height: calc(100%/8); margin: 0; position: relative;">
+                                <h1>Individual details</h1>
+                                <span id="deleteImg" class="fa-stack" style="position: absolute; bottom: 25%; right: 50%;">
+                                    <i class="fa fa-camera fa-stack-2x" aria-hidden="true" style="color: black;"></i>
+                                    <i class="fa fa-minus fa-stack-1x" aria-hidden="true" style="color: red;"></i>
+                                </span>
+                            </div>
+                            <div class="row" style="width: 100%; height: calc(700%/8); margin: 0;">
+                                <div class="col-6" id="mini" style="height: 100%; margin: 0; padding: 0; overflow-y: auto;">
+                                    <div class="row" style="width: 100%; height: 60%; margin: 0;">
+                                        <div class="col-9" id="addPicture" style="border: 2px solid black; background-color: white; position: relative;">
+                                            <div id="bigPic" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+                                            <div id="addPictureOverlay" class="justify-content-center" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: none; align-items: center; background-color: rgba(0, 0, 0, 0.5);">
+                                                <i class="fa fa-camera fa-5x" aria-hidden="true"></i>
+                                            </div>
+                                            <input type="file" id="fileExplorer" title=" " accept="image/png,image/jpg,image/jpeg">
+                                        </div>
+                                        <div class="col-3" id="miniSide">
+                                            <div class="row" style="height: calc(100%/3);"></div>
+                                            <div class="row" style="height: calc(100%/3);"></div>
+                                            <div class="row" style="height: calc(100%/3);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="miniBottom" style="height: 40%; margin: 0;"></div>
+                                </div>
+                                <div class="col-6" style="height: 100%; margin: 0;">
+                                    <div class="row" style="height: 20%;">
+                                        <div class="col-4"><label for="IDName">ID Name</label></div>
+                                        <div class="col-8"><input type="text" id="IDName" style="width: 100%;"></div>
+                                    </div>
+                                    <div class="row" style="height: 20%;">
+                                        <div class="col-4"><label for="age">Age</label></div>
+                                        <div class="col-8"><input type="number" id="age" style="width: 100%;"></div>
+                                    </div>
+                                    <div class="row" style="height: 20%;">
+                                        <div class="col-4"><label for="description">Description</label></div>
+                                        <div class="col-8"><textarea id="description" style="width: 100%;"></textarea></div>
+                                    </div>
+                                    <div class="row" style="height: 20%;">
+                                        <div class="col-4"><label for="comment">Comment</label></div>
+                                        <div class="col-8"><textarea id="comment" style="width: 100%;"></textarea></div>
+                                    </div>
+                                    <div class="row" style="height: 20%;">
+                                        <div class="col-7"><button type="button" class="btn btn-light" id="tracking" style="width: 100%;">Add tracking</button></div>
+                                        <div class="col-5"><button type="button" class="btn btn-light" id="applyChanges" style="width: 100%;">Apply changes</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5 justify-content-center" style="height: 100%; display: flex; align-items: center;">
+                            <div class="justify-content-center text-center" id="addPerson" style="height: 70%; width: 50%; display: flex; align-items: center; position: relative;">
+                                <i class="fa fa-plus fa-5x" aria-hidden="true" style="color: green; z-index: 1"></i>
+                                <img src="public/images/profile.png" style="height: 100%; width: 100%; position: absolute; top: 0; left: 0; z-index: 0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individual creation modal -->
+        <div class="modal fade" id="individualCreationModal" tabindex="-1" role="dialog" aria-labelledby="Individual Creation Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 60%; margin: auto !important;">
+                <div class="modal-content" style="min-width: 100%; margin: auto !important;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create an individual</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="min-height: 60vh !important;">
+                        <div class="row" style="width: 100%; height: 60vh; margin: 0;">
+                            <div class="col" id="miniModal" style="width: 100%; height: 100%; margin: 0; padding: 0; overflow-y: auto;">
+                                <div class="row" style="width: 100%; height: 60%; margin: 0;">
+                                    <div class="col-9" id="addPictureModal" style="border: 2px solid black; background-color: white; position: relative;">
+                                        <div id="bigPicModal" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-size: contain; background-repeat: no-repeat; background-position: center center;"></div>
+                                        <div id="addPictureOverlayModal" class="justify-content-center" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: none; align-items: center; background-color: rgba(0, 0, 0, 0.5);">
+                                            <i class="fa fa-camera fa-5x" aria-hidden="true"></i>
+                                        </div>
+                                        <input type="file" id="fileExplorerModal" title=" " accept="image/png,image/jpg,image/jpeg">
+                                    </div>
+                                    <div class="col-3" id="miniSideModal">
+                                        <div class="row" style="height: calc(100%/3); border: 2px solid black;"></div>
+                                        <div class="row" style="height: calc(100%/3); border: 2px solid black;"></div>
+                                        <div class="row" style="height: calc(100%/3); border: 2px solid black;"></div>
+                                    </div>
+                                </div>
+                                <div class="row" id="miniBottomModal" style="height: 40%; margin: 0;"></div>
+                            </div>
+                            <div class="col" style="width: 100%; height: 100%; margin: 0;">
+                                <div class="row" style="height: 25%;">
+                                    <div class="col-4"><label for="IDName">ID Name</label></div>
+                                    <div class="col-8"><input type="text" id="IDNameModal" style="width: 100%;" value="Jessica"></div>
+                                </div>
+                                <div class="row" style="height: 25%;">
+                                    <div class="col-4"><label for="age">Age</label></div>
+                                    <div class="col-8"><input type="number" id="ageModal" style="width: 100%;" value="30"></div>
+                                </div>
+                                <div class="row" style="height: 25%;">
+                                    <div class="col-4"><label for="description">Description</label></div>
+                                    <div class="col-8"><textarea id="descriptionModal" style="width: 100%;">She is a bomb</textarea></div>
+                                </div>
+                                <div class="row" style="height: 25%;">
+                                    <div class="col-4"><label for="comment">Comment</label></div>
+                                    <div class="col-8"><textarea id="commentModal" style="width: 100%;">No comment</textarea></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="min-height: 10vh !important">
+                        <div class="col-5 justify-content-center" style="min-height: 100px !important; width: auto; display: flex; align-items: center;">
+                            <div class="justify-content-center text-center" id="addPersonConfirmation" style="height: 100%; display: flex; align-items: center; position: relative;">
+                                <img src="public/images/profile.png" style="min-height: 100px; height: 100% !important; width: auto; position: absolute; top: 0; left: 0; z-index: 0">
+                                <i class="fa fa-plus fa-2x" aria-hidden="true" style="color: green; z-index: 1"></i>
+
+                            </div>
+                        </div>
+                        <div class="col-5 justify-content-center" style="height: 100% !important; width: auto; display: flex; align-items: center;">
+                            <div class="justify-content-center text-center" id="cancelPersonConfirmation" style="height: 100%; display: flex; align-items: center; position: relative;">
+                                <i class="fa fa-ban fa-2x" aria-hidden="true" style="color: red; z-index: 1"></i>
+                                <img src="public/images/profile.png" style="min-height: 100px; height: 100% !important; width: auto; position: absolute; top: 0; left: 0; z-index: 0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Individuals merging modal -->
+        <div class="modal fade" id="individualsMergingModal" tabindex="-1" role="dialog" aria-labelledby="Individuals Merging Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 30vw !important; margin: auto !important;">
+                <div class="modal-content" style="min-width: 100%; margin: auto !important;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Merge individuals</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are in Individual merging mode! Please select the individuals to merge !</p>
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-exclamation-triangle fa-5x" aria-hidden="true" style="color: red;"></i>
+                            </div>
+                            <div class="col-10">
+                                Only images are merged, information of the last selected individual will be kept!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+        <script src="public/javascripts/individuals.js"></script>
+
+    </body>
+</html>

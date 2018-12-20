@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1"/>
+        <title>HumanRec - History</title>
+        <link rel="stylesheet" type="text/css" href="public/stylesheets/history.css">
+        <link rel="stylesheet" type="text/css" href="node_modules/jquery-ui-dist/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+
+        <link rel="icon" href="public/images/favicon.ico" type="image/x-icon">
+
+
+
+    </head>
+    <body>
+        <div id="mainContainer">
+            <div id="historyContainter">
+                <div id="historyRow" class="row">
+                    <div id="historyCol" class="col-8">
+                        <div id="filters" class="row" style="display: flex; align-items: center;">
+                            <div class="col col-2" style="display: flex; align-items: center;"><h1>Filters</h1></div>
+                            <div class="col col-2" align="center">
+                                <div class="row"><div class="col" align="center"><label for="similarity">Similarity</label></div></div>
+                                <div class="row"><input type="number" id="similarity"></div>
+                            </div>
+                            <div class="col col-3" align="center">
+                                <div class="row"><div class="col" align="center"><label>Camera(s)</label></div></div>
+                                <div class="row"><div class="col" align="center"><button type="button" id="cameraSelectionButton" class="btn btn-secondary" style="height: 100%;">camera(s) selected</button></div></div>
+                            </div>
+                            <div class="col col-5" align="center">
+                                <div class="row">
+                                    <div class="col-2"><label>From</label></div>
+                                    <!--<div class="col-5"><input type="date"></div>-->
+                                    <!--<div class="col-5"><div class="row"><input type="number" class="col" style="padding: 0;">h<input type="number" class="col" style="padding: 0;">min<input type="number" class="col" style="padding: 0;">sec</div></div>-->
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <!--<div id="datetimepicker" class="input-append date">
+                                                <input data-format="dd/MM/yyyy hh:mm:ss" type="text">
+                                                <span class="add-on">
+                                                    <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                                </span>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-2"><label>To</label></div>
+                                    <div class="col-5"><input type="date"></div>
+                                    <div class="col-5"><div class="row"><input type="number" class="col" style="padding: 0;">h<input type="number" class="col" style="padding: 0;">min<input type="number" class="col" style="padding: 0;">sec</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="historyTable" class="row">
+                            <table class="table table-hover table-responsive text-center" style="overflow-y: auto;">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col" style="width: 15%;">Detected face</th>
+                                        <th scope="col" style="width: 10%;">Similarity</th>
+                                        <th scope="col" style="width: 40%;">Camera</th>
+                                        <th scope="col" style="width: 15%;">State</th>
+                                        <th scope="col" style="width: 20%;">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="overflow-y: auto;"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="footageCol" class="col-4">
+                        <div id="trackedIndividualDisplayed" class="row" style="border: 1px solid black;"></div>
+                        <div id="footages" class="row" style="position: relative;">
+
+                            <div id="trackedIndividualOptions" style="overflow-y: auto; height: 50%; width: 100%; position: absolute; top: 0; border: 1px solid black; display: none;"></div>
+
+                            <div class="row justify-content-center" style="height: 44.5%; width: 100%; margin: 0;">
+                                <img src="" style="height: 100%; width: auto;">
+                            </div>
+                            <div class="row" style="height: 55.5%; width: 100%; margin: 0;">
+                                <!--<div class="row justify-content-center" style="height: 10%; width: 100%; margin: 0;">Date and time of capture</div>-->
+                                <div class="row justify-content-center" style="height: 80%; width: 100%; margin: 0;">
+                                    <img id="fullImage" src="" style="height: 100%; width: auto;">
+                                </div>
+                                <!--<div class="row justify-content-center" style="height: 10%; width: 100%; margin: 0;">
+                                    <i class="fa fa-backward fa-3x" aria-hidden="true"></i>
+                                    <div style="width: 10%"></div>
+                                    <i class="fa fa-forward fa-3x" aria-hidden="true"></i>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cameras selection modal -->
+        <div class="modal fade" id="cameraSelectionModal" tabindex="-1" role="dialog" aria-labelledby="Camera Selection Modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Select the camera(s) of interest</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover" id="cameraSelectionTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" style="width: 70%;">Camera Name</th>
+                                    <th scope="col" style="width: 30%;" class="text-center">Selection</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cameraSelectionModalOK">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+        <script src="public/javascripts/history.js"></script>
+
+    </body>
+</html>
